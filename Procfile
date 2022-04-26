@@ -1,1 +1,1 @@
- web:gunicorn addressbook.wsgi
+web: gunicorn addressbook.wsgi --log-file -
