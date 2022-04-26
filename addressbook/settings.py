@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +29,7 @@ SECRET_KEY = 'django-insecure-2m5s*@srk342*+7r7&a@*@xj-%i+hiqm5*mz3alw3p-ik=c_ip
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['spw-addressbook.herokuapp.com']
 
 
 # Application definition
@@ -78,17 +80,27 @@ WSGI_APPLICATION = 'addressbook.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 # Change username & password to your username & password
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': "django_security",
+#         'USER': "postgres",
+#         'PASSWORD': "rohit",
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': "django_security",
-        'USER': "postgres",
-        'PASSWORD': "rohit",
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': "ddh95mvfl5181s",
+        'USER': "wflvfjdpxwdyha",
+        'PASSWORD': "d0df38ccd5c98e7c8966ea97e2afd82b809487c25bbf9ae342e103fac6fbe79a",
+        'HOST': 'ec2-52-48-159-67.eu-west-1.compute.amazonaws.com',
+        'PORT': '5432',
     }
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -147,10 +159,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS = [
+#     STATIC_DIR,
+# ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    STATIC_DIR,
-]
+django_heroku.settings(locals())
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
